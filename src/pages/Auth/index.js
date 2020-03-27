@@ -16,7 +16,7 @@ const Auth = ({ match }) => {
   const [username, setUsername] = useState("");
   const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState("");
 
-  const [{ isLoading, error, response }, doFetch] = useFetch(apiUrl);
+  const [{ isLoading, response }, doFetch] = useFetch(apiUrl);
   const [token, setToken] = useLocalStorage("token");
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Auth = ({ match }) => {
     }
     setToken(response.user.token);
     setIsSuccessfulSubmit(true);
-  }, [response]);
+  }, [response, setToken]);
 
   const handleSubmit = event => {
     event.preventDefault();
